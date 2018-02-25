@@ -1,8 +1,8 @@
 import scrapy
 from bs4 import BeautifulSoup
 
-class magooshSpider(scrapy.Spider):
-	name = 'magoosh'
+class scraper(scrapy.Spider):
+	name = 'mangoosh'
 	start_urls = ['http://gre.magoosh.com/login']
 
 	def parse(self, response):
@@ -12,7 +12,7 @@ class magooshSpider(scrapy.Spider):
 			Replace the fake text below with your own registered
 			email and password on http://gre.magoosh.com:
 			'''
-			formdata={'session[login]': 'abc@xyz.com', 'session[password]': 'somepassword'},
+			formdata={'session[login]': 'coinwars@protonmail.com', 'session[password]': 'root@09'},
 			callback=self.after_login
 		)
 
@@ -35,7 +35,7 @@ class magooshSpider(scrapy.Spider):
 				for vu in cgparent.find_all('a'):
 					link = str(vu.get('href'))
 					if '/lessons/' in link:
-						s = 'http://gre.magoosh.com' + str(link) + "\n"
+						s = 'http://gre.magoosh.com' + link + "\n"
 						req = scrapy.Request(s, callback=self.videoPage_loaded)
 						yield req
 		return
